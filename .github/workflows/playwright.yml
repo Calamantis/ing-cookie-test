@@ -32,7 +32,7 @@ jobs:
       run: playwright install --with-deps ${{ matrix.browser }}
 
     - name: Run Playwright tests
-      run: pytest --browser ${{ matrix.browser }} -n auto
+      run: pytest --browser ${{ matrix.browser }} -n auto --tracing on
 
     - name: Upload Report
       if: always()

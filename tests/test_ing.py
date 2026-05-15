@@ -19,8 +19,8 @@ def test_ing_cookies(page: Page, context):
     cookie_GDPR_details = next((c for c in cookies if c['name'] == 'cookiePolicyGDPR__details'), None)
 
 
-    assert cookie_GDPR is not None, "cookiePolicyGDPR not found!"
-    assert cookie_GDPR_details is not None, "cookiePolicyGDPR__details not found!!"
+    assert cookie_GDPR is not None, "cookiePolicyGDPR not found"
+    assert cookie_GDPR_details is not None, "cookiePolicyGDPR__details not found"
 
     assert cookie_GDPR["value"] == "3", "cookiePolicyGDPR has unexpected value"
     assert cookie_GDPR_details["value"] != "", "cookiePolicyGDPR__details should not be empty"
