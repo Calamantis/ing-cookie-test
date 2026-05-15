@@ -1,13 +1,15 @@
-from playwright.sync_api import Page, expect
+from playwright.sync_api import Page, expect, BrowserContext
 
-def test_ing_cookies(page: Page, context):
+def test_ing_cookies(page: Page, context: BrowserContext, browser: BrowserContext):
+
+    context = browser.new_context(
+        user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
+        viewport={"width": 1920, "height": 1080},
+        locale="pl-PL"
+    )
+    page = context.new_page()
 
     page.goto("https://ing.pl")
-
-    check = page.get_by_role("checkbox", name="a11y-label")
-    if check.get_attribute("aria-checked") == "false":
-        check.click()
-
     page.get_by_role("button", name="Dostosuj").click()
 
     toggle = page.locator('[name="CpmAnalyticalOption"]')
